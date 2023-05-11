@@ -1,5 +1,40 @@
-//import { configureStore } from "@reduxjs/toolkit";
-//import {inputSlice} from "../redux/inputSlice" ;
+import { configureStore } from "@reduxjs/toolkit";
+import {contactsReducer } from "./contactsSlice" ;
+import { filterReducer } from "./filterSlice";
+//import {contactsReducer as rootReducer} from "../redux/inputSlice"
+
+
+
+const customMiddleware =(stor) =>{
+    return(next)=>{
+        return(action)=>{
+            //console.log(store)
+            if (typeof action === 'function') {
+                action(store.dispatch)
+                return
+            }
+        return next(action)
+    }
+}
+}
+
+export const store = configureStore({
+    reducer: {
+        contacts: contactsReducer,
+        filter: filterReducer,
+    },
+    middleware: [customMiddleware],
+});
+
+
+
+
+
+    
+
+
+
+
 //import {contactsReducer as rootReducer} from "../redux/inputSlice"
 
 // import {

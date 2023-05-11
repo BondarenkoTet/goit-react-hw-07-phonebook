@@ -1,7 +1,8 @@
 import { nanoid } from 'nanoid';
 import css from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/inputSlice';
+import { addContacts } from 'redux/contactsSlice';
+import {contactsAction} from "redux/contactsSlice";
 
 export default function Form() {
     const dispatch = useDispatch();
@@ -45,13 +46,12 @@ return (
             required
         />
         </label>
-        <button type="submit" className={css.btn}>Add contact</button>
+        {/* <button type="submit" className={css.btn}>Add contact</button> */}
+        <button type="submit" onClick={()=> dispatch(contactsAction()) } className={css.btn}>Add contact</button>
     </form>
 );
 }
         
-
-
 
 
 
@@ -82,13 +82,11 @@ return (
             //             number: e.target.number.value
             //         }
 
-                    
             //         addContacts(newContact);
             //         onSubmit (
             //             name,
             //             number,
             //         )
-                    
             //     }
         //     const reset = () => {
         //             setName('')
@@ -96,7 +94,6 @@ return (
         //         }
         
         // return (
-            
         //     <form onSubmit={handleSubmit} className={css.form}>
         //                 <label className={css.label}
         //                 >Name   

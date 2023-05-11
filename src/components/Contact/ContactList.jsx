@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import {deleteContacts} from "redux/inputSlice";
+import {deleteContacts} from "redux/contactsSlice";
+//import {filteredContacts} from "redux/filterSlice"
+//import {selectFilter} from "redux/selectors"
 import css from "./ContactsList.module.css"
 
 export default function ContactList () {
-
     const dispatch = useDispatch();
+
     const contactsList = useSelector(state=> state.contacts);
 
     const filteredContacts = useSelector(state => state.filter);
@@ -23,8 +25,9 @@ export default function ContactList () {
                 <span  className={css["span-number"]}>{contact.number}</span> 
                 <button 
                     type="button"
+                    // name="filter"
                     className={css["delete-btn"]}
-                    onClick={() => removeContacts(contact)}
+                    onClick={() => removeContacts(contact.id)}
                     id={contact.id}
                 >Delete
                 </button>
