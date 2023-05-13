@@ -5,7 +5,7 @@ import css from "./ContactsList.module.css"
 import { useEffect } from "react";
 import { selectFilter } from "redux/selectors";
 import { fetchContacts } from "redux/operation";
-import * as contactsOperation from "redux/operation"
+//import * as contactsOperation from "redux/operation"
 
 export default function ContactList () {
     const dispatch = useDispatch();

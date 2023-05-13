@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {contactsAction, addContactsAction} from "redux/contactsSlice";
 //import {createAsyncThunk} from "redux/contactsSlice"
 import {selectContacts} from "redux/selectors"
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 
 const Form = () => {
