@@ -1,12 +1,17 @@
 import { nanoid } from 'nanoid';
 import css from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice';
-import {contactsAction} from "redux/contactsSlice";
+//import { addContacts } from 'redux/contactsSlice';
+import {contactsAction, addContactsAction} from "redux/contactsSlice";
+//import {createAsyncThunk} from "redux/contactsSlice"
+import {selectContacts} from "redux/selectors"
+import { useEffect } from 'react';
 
-export default function Form() {
+
+const Form = () => {
     const dispatch = useDispatch();
-    const contacts = useSelector(state => state.contacts);
+    const contacts = useSelector(selectContacts);
+    
 
 const handleSubmit = e => {
     e.preventDefault();
@@ -14,11 +19,13 @@ const handleSubmit = e => {
     name: e.target.name.value,
     number: e.target.number.value,
     id: nanoid(),
+
 };
+console.log(contacts);
     if (contacts.find(contact => contact.name === newContact.name)) {
         alert ("This contact is already in your phonebook")
     } else {
-        dispatch(addContacts(newContact));
+        dispatch(addContactsAction(newContact));
     }
     e.target.name.value = '';
     e.target.number.value = '';
@@ -52,73 +59,6 @@ return (
 );
 }
         
-
-
-
-        // export default function Form  ()  {
-        //     const [name, setName] = useState("");
-        //     const [number, setNumber] = useState("");
-            
-        //     const handleChange = event => {
-        //         const {name, value} = event.target;
+export default Form;
         
-        //         switch (name) {
-        //             case "name": setName(value) ;
-        //                 break;
-        
-        //             case "number": setNumber(value);
-        //                 break;
-        
-        //             default: throw new Error();
-        //         }
-        //     }
-            
-            // const handleSubmit = e => {
-            //         e.preventDefault()
-                
-            //         const newContact = {
-            //             id: nanoid(),
-            //             name: e.target.name.value,
-            //             number: e.target.number.value
-            //         }
-
-            //         addContacts(newContact);
-            //         onSubmit (
-            //             name,
-            //             number,
-            //         )
-            //     }
-        //     const reset = () => {
-        //             setName('')
-        //             setNumber('')
-        //         }
-        
-        // return (
-        //     <form onSubmit={handleSubmit} className={css.form}>
-        //                 <label className={css.label}
-        //                 >Name   
-        //                     <input className={css.input}
-        //                         type="text"
-        //                         name="name" 
-                                //onChange={handleChange}
-                        //         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                        //         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                        //         required
-                        //     />
-                        // </label>
-                        // <label className={css.label}
-                        // >Number
-                        //     <input className={css.input}
-                        //             type="tel"
-                        //             name="number"
-                        //             //onChange={handleChange}
-                        //             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                        //             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                        //             required
-                //             />
-                //         </label>
-                //         <button type="Submit" className={css.btn}>Add contact</button>
-                //     </form>     
-                //     )
-                // }
         

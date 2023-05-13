@@ -2,9 +2,22 @@
 import Form from "./Form/Form";
 import  ContactList  from "./Contact/ContactList";
 import Filter from "./Filter/Filter";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {selectContacts, selectLoader, selectError} from "redux/selectors"
+import { fetchContacts } from '../redux/operation';
+//import * as contactsOperation from "redux/operation";
 
 
-export default function App() {
+export const App = ()=> {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoader);
+  const error=useSelector(selectError)
+  const contacts =useSelector(selectContacts)
+  
+  useEffect(() => {
+      dispatch(fetchContacts());
+      }, [dispatch]);
 
   return (
     <>
@@ -12,9 +25,9 @@ export default function App() {
         <Form />
       <h2>Contacts</h2> 
         <Filter/>
-        <ul>
-          <ContactList />
-        </ul>    
+        {isLoading && <p>Loading ...</p>}
+        {error && <p>{error}</p>}
+        {contacts.length >0 && ( <ContactList /> )}
     </>
   )
 }
