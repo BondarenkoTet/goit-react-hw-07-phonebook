@@ -1,5 +1,5 @@
 import axios from "axios";
-//import { createAsyncThunk } from "@reduxjs/toolkit";
+
 
 axios.defaults.baseURL = "https://645a565b95624ceb21feeff6.mockapi.io" 
 
@@ -16,7 +16,7 @@ export const addContacts = async() =>{
 };
 
 export const deleteContact = async id =>{
-    const contacts = await axios.delete(`${axios.defaults.baseURL}/contacts/contacts/${id}`);
+    const contacts = await axios.delete(`${axios.defaults.baseURL}/contacts${id}`);
     return contacts.data.id;
 };
 

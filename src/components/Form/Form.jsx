@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import css from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 //import { addContacts } from 'redux/contactsSlice';
-import {contactsAction, addContactsAction} from "redux/contactsSlice";
+import {contactsAction, addContactsAction} from "redux/thunks";
 //import {createAsyncThunk} from "redux/contactsSlice"
 import {selectContacts} from "redux/selectors"
 //import { useEffect } from 'react';

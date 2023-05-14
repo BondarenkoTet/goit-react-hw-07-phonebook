@@ -1,29 +1,31 @@
-import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {contactsInitialState} from "redux/initials";
-import { fetchContacts, addContacts, deleteContact } from './operation';
+import {contactsAction, addContactsAction, deleteContactAction} from "redux/thunks"
 
 
-export const handlePending = state => {
+export const handlePendingGet = state => {
     state.isLoading = true
 }
-export const handleFulfilled = (state, {payload})=>{
+export const handleFulfilledGet = (state, {payload})=>{
     state.isLoading = false;
-    state.contacts = payload;
+    state.contacts.push(payload);
+    state.error = "";
+}
+export const handleFulfilledCreate = (state, {payload})=>{
+    state.isLoading = false;
+    state.contacts.push(payload);
+    state.error = "";
+}
+export const handleFulfilledDelete = (state, {payload})=>{
+    state.isLoading = false;
+    state.contacts = state.contacts.filter((contact) => contact.id !== payload.id);
     state.error = "";
 }
 export const handleRejected = (state, {payload})=>{
         state.isLoading = false;
         state.error = payload;  
 }
-export const contactsAction = createAsyncThunk("contacts/fetchContacts", async()=>{
-    return await fetchContacts()
-})
-export const addContactsAction = createAsyncThunk("contacts/addContacts", async()=>{
-    return await addContacts()
-})
-export const deleteContactAction = createAsyncThunk("contacts/deleteContact", async()=>{
-    return await deleteContact()
-})
+
 const contactsFuncArr = [contactsAction, addContactsAction, deleteContactAction]
 
 const getContactsFuncArr = (type) => contactsFuncArr.map((el) => el[type])
@@ -32,11 +34,6 @@ const getContactsFuncArr = (type) => contactsFuncArr.map((el) => el[type])
 const contactsSlice = createSlice({
     name: "contacts",
     initialState : contactsInitialState,
-    // {
-    //     contacts: [],
-    //     isLoading: false,
-    //     error: null,
-    // },
     
     extraReducers: (builder)=> {
         builder
@@ -49,8 +46,8 @@ const contactsSlice = createSlice({
                 // //.addCase(deleteContactAction.pending, handlePending)
                 // .addCase(deleteContactAction.fulfilled, handleFulfilled)
                 // .addCase(deleteContactAction.rejected, handleRejected)
-                .addMatcher(isAnyOf(...getContactsFuncArr("pending")), handlePending
-                ).addMatcher(isAnyOf(...getContactsFuncArr("fulfilled")), handleFulfilled
+                .addMatcher(isAnyOf(...getContactsFuncArr("pending")), handlePendingGet
+                ).addMatcher(isAnyOf(...getContactsFuncArr("fulfilled")), handleFulfilledCreate
                 ).addMatcher(isAnyOf(...getContactsFuncArr("rejected")), handleRejected
                 )
     },
