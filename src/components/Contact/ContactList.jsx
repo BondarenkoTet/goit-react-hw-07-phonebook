@@ -1,50 +1,75 @@
+//import React from "react";
+import { selectFilteredContacts } from "redux/selectors";
 import { useSelector, useDispatch } from "react-redux";
-import {deleteContactAction} from "redux/thunks";
-//import {filteredContacts} from "redux/filterSlice"
+//import { getContactsAction ,deleteContactAction} from "redux/thunks";
+//import {deleteContact} from "redux/operation"
 import css from "./ContactsList.module.css"
 import { useEffect } from "react";
-import { selectFilter } from "redux/selectors";
-import { fetchContacts } from "redux/operation";
-//import * as contactsOperation from "redux/operation"
-//import {contactsAction , deleteContactAction} from "redux/thunks"
-//import {selectFilteredContacts} from "redux/selectors"
+import { selectContacts, selectFilter } from "redux/selectors";
+import {getContacts , deleteContacts} from "redux/operation"
 
-export default function ContactList () {
-    const dispatch = useDispatch();
+
+const ContactList = () => {
+
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getContacts());
+    // }, [dispatch]);
     
-    useEffect(() => {
-        dispatch(fetchContacts());
-        }, [dispatch]);
+    // const contactsList = useSelector(selectContacts);
+    // const filteredContacts = useSelector(selectFilter);
+    
+    // const removeContacts = id => {
+    //     dispatch(deleteContacts(id));
+    // };
+    // console.log("contactsList", contactsList);
 
-    const contactsList = useSelector(state=> state.contacts.contacts.items);
-    const filteredContacts = useSelector(selectFilter);
+    // const onFilter = contactsList.filter(contact =>
+    //     contact.name.toLocaleLowerCase().includes(filteredContacts)
+    // );
+    
 
-    const removeContacts = contact => {
-        dispatch(deleteContactAction(contact.id));
-    };
-console.log("contactsList", contactsList);
 
-    const onFilter = contactsList.filter(contact => 
-        contact.name.toLowerCase().includes(filteredContacts))
-// const onFilter= selectFilteredContacts()
-    return onFilter.length > 0 ? (
-        onFilter.map(contact => (
+    const dispatch = useDispatch();
+    const availableContacts = useSelector(selectFilteredContacts);
+
+    const handleDelete = id => dispatch(deleteContacts(id));
+
+
+    // useEffect(() => {
+    //     dispatch(getContacts ());
+    //     }, [dispatch]);
+
+    // const contactsList = useSelector(selectContacts);
+    // const filteredContacts = useSelector(selectFilter);
+
+    // const removeContacts = id => {
+    //     dispatch(deleteContacts(id));
+    // };
+//console.log("contactsList", contactsList);
+
+    // const availableContacts = contactsList.filter(contact => 
+    //     contact.name.toLowerCase().includes(filteredContacts))
+
+    return availableContacts.length > 0 ? (
+        <>
+        {availableContacts.map(contact => (
             <li key={contact.id}>
                 <span  className={css["span-name"]}>{contact.name}:</span>
                 <span  className={css["span-number"]}>{contact.number}</span> 
                 <button 
                     type="button"
-                    // name="filter"
                     className={css["delete-btn"]}
-                    onClick={() => removeContacts(contact.id)}
+                    onClick={() => handleDelete(contact.id)}
                     id={contact.id}
                 >Delete
                 </button>
             </li>
-    )))
-    : <p className={css.tag}>No contacts</p>
-        
+        ))}
+        </>
+    ) : (<p>No contacts</p>)    
 }
-        
+export default ContactList;        
 
 

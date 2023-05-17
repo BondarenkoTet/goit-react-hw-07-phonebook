@@ -1,13 +1,22 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchContacts, addContacts, deleteContact } from './operation';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { getContacts, 
+//         createContacts,
+//         deleteContacts } from './operation';
+// import { filterContacts } from "./actions";
 
 
-export const contactsAction = createAsyncThunk("contacts/fetchContacts", async()=>{
-    return await fetchContacts()
-})
-export const addContactsAction = createAsyncThunk("contacts/addContacts", async(data)=>{
-    return await addContacts(data)
-})
-export const deleteContactAction = createAsyncThunk("contacts/deleteContact", async(id)=>{
-    return await deleteContact(id)
-})
+// export const getContactsAction = createAsyncThunk("contacts/getContacts", async()=>{
+//     return await getContacts()
+// })
+// export const createContactsAction = createAsyncThunk("contacts/createContacts", async(contact)=>{
+//     return await createContacts(contact)
+// })
+// export const deleteContactAction = createAsyncThunk("contacts/deleteContacts", async(id)=>{
+//     return await deleteContacts(id)
+// })
+// export const filterContactAction = createAsyncThunk("contacts/filterContacts", (e) => {
+//     return   filterContacts(e)
+// })
+
+
+
