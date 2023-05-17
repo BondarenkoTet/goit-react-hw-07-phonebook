@@ -3,7 +3,6 @@ import css from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createContacts} from "redux/operation";
 import {selectContacts} from "redux/selectors"
-//import { useState } from 'react';
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -18,13 +17,47 @@ const Form = () => {
         };
         if (contacts.find(contact => contact.name.toLowerCase() === newContact.name.toLowerCase())) {
 
-        } else {
-          dispatch(createContacts(newContact));
+        } else {dispatch(createContacts(newContact));
 
         }
         e.target.name.value = '';
         e.target.number.value = '';
       };
+
+      return (
+        <form onSubmit={handleSubmit} className={css.form}>
+            <label className={css.label}>
+                Name
+            <input
+                type="text"
+                name="name"
+                className={css.input}
+                //onChange={handleChange}
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                required
+            />
+            </label>
+            <label>
+                Number
+            <input
+                type="tel"
+                name="number"
+                className={css.input}
+               // onChange={handleChange}
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
+            />
+            </label>
+            <button type="submit" 
+                className={css.btn}>Add contact</button> 
+        </form>
+        
+    );
+    }
+            
+    export default Form;
+
+
     // const [name, setName] = useState('');
     // const [number, setNumber] = useState('');
 
@@ -57,37 +90,6 @@ const Form = () => {
     //         setNumber(e.target.value);
     //     }
     // };
-return (
-    <form onSubmit={handleSubmit} className={css.form}>
-        <label className={css.label}>
-            Name
-        <input
-            type="text"
-            name="name"
-            className={css.input}
-            //onChange={handleChange}
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-        />
-        </label>
-        <label>
-            Number
-        <input
-            type="tel"
-            name="number"
-            className={css.input}
-           // onChange={handleChange}
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-        />
-        </label>
-        <button type="submit" 
-            className={css.btn}>Add contact</button> 
-    </form>
-    
-);
-}
-        
-export default Form;
+
         
         
