@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 //import { getContactsAction ,deleteContactAction} from "redux/thunks";
 //import {deleteContact} from "redux/operation"
 import css from "./ContactsList.module.css"
-import { useEffect } from "react";
-import { selectContacts, selectFilter } from "redux/selectors";
-import {getContacts , deleteContacts} from "redux/operation"
+//import { useEffect } from "react";
+//import { selectContacts, selectFilter } from "redux/selectors";
+import { deleteContacts} from "redux/operation"
 
 
 const ContactList = () => {
