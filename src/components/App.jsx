@@ -24,11 +24,12 @@ export const App = ()=> {
   <>
       <h1>Phonebook</h1>
         <Form />
+        <Filter/> 
         {isLoading && <p>Loading ...</p>}
       <h2>Contacts</h2> 
         {error && <p>{error}</p>}
         {contacts.length > 0 &&  <ContactList /> } 
-        <Filter/> 
+
     </>
   )
 }

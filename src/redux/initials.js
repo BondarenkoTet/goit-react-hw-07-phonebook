@@ -1,6 +1,6 @@
 export const contactsInitialState ={
+    items: [],
     contacts: {
-        items: [],
         isLoading: false,
         error: null
     },

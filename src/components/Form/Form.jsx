@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import css from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createContacts} from "redux/operation";
+import { createContacts, getContacts} from "redux/operation";
 import {selectContacts} from "redux/selectors"
 
 const Form = () => {
@@ -16,15 +16,14 @@ const Form = () => {
             id: nanoid(),
         };
         if (contacts.find(contact => contact.name.toLowerCase() === newContact.name.toLowerCase())) {
-
+            alert ("This contact is already in your phonebook")
         } else {dispatch(createContacts(newContact));
-
         }
         e.target.name.value = '';
         e.target.number.value = '';
-      };
+    };
 
-      return (
+    return (
         <form onSubmit={handleSubmit} className={css.form}>
             <label className={css.label}>
                 Name
@@ -32,7 +31,6 @@ const Form = () => {
                 type="text"
                 name="name"
                 className={css.input}
-                //onChange={handleChange}
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
             />
@@ -49,7 +47,9 @@ const Form = () => {
             />
             </label>
             <button type="submit" 
+                onClick={() => dispatch(getContacts())}
                 className={css.btn}>Add contact</button> 
+                
         </form>
         
     );

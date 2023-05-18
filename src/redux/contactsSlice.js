@@ -18,23 +18,18 @@ const handleRejected = (state, {payload}) => {
 };
 const handleFulfilledGet = (state, {payload})=>{
     state.items=payload;
-    //state.error = "";
 }
 const handleFulfilledCreate = (state, {payload})=>{
     state.items.push(payload);
 }    
 const handleFulfilledDelete = (state, {payload})=>{
     const index = state.items.findIndex(contact => contact.id === payload.id);
-    state.items.splice(index, 1);  
-    // state.items = state.contacts.items.filter(
-    //     contact => contact.id !== payload
-    //);
-    
+    state.items.splice(index, 1);     
 }
 
 const contactsFuncArr = [getContacts, createContacts, deleteContacts]
 const getContactsFuncArr = (type) => contactsFuncArr.map((el) => el[type])
-//const getContactsFuncArr = (type) => isAnyOf(...contactsFuncArr.map(action => action[type]))
+
 
 export const contactsSlice = createSlice({
     name: "contacts",

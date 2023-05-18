@@ -29,49 +29,6 @@ const ContactList = () => {
         </>
     ) : (<p>No contacts</p>)    
 }
-export default ContactList;        
-
-
-
-
-
-
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getContacts());
-    // }, [dispatch]);
-    
-    // const contactsList = useSelector(selectContacts);
-    // const filteredContacts = useSelector(selectFilter);
-    
-    // const removeContacts = id => {
-    //     dispatch(deleteContacts(id));
-    // };
-    // console.log("contactsList", contactsList);
-
-    // const onFilter = contactsList.filter(contact =>
-    //     contact.name.toLocaleLowerCase().includes(filteredContacts)
-    // );
-    
-
-
-    
-
-
-    // useEffect(() => {
-    //     dispatch(getContacts ());
-    //     }, [dispatch]);
-
-    // const contactsList = useSelector(selectContacts);
-    // const filteredContacts = useSelector(selectFilter);
-
-    // const removeContacts = id => {
-    //     dispatch(deleteContacts(id));
-    // };
-//console.log("contactsList", contactsList);
-
-    // const availableContacts = contactsList.filter(contact => 
-    //     contact.name.toLowerCase().includes(filteredContacts))
+export default ContactList;   
 
     

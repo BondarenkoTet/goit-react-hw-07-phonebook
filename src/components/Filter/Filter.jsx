@@ -1,4 +1,4 @@
-//import React from "react";
+import React from "react";
 import { useDispatch} from "react-redux";
 import {filteredContacts} from "redux/filterSlice"
 import css from "./Filter.module.css"
@@ -11,7 +11,7 @@ const Filter = () =>{
     //     dispatch(filteredContacts(filterValue));
     // }
     const onFilterChange = e => {
-        dispatch(filteredContacts(e.target.value.toLowerCase()));
+        dispatch(filteredContacts(e.target.value));
     };
     
     return (

@@ -3,12 +3,13 @@ import{contactsInitialState} from "redux/initials";
 
 
 const filterSlice = createSlice({
-    name: 'filter',
+    name: "filter",
     initialState: contactsInitialState,
     reducers: {
         filteredContacts (state, {payload}) {  
             state.isLoading = false;
             state.filter = payload; 
+            // return (state=payload)
         }
 }});
 
